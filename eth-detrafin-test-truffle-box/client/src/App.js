@@ -8,6 +8,7 @@ import "./App.css";
 import HeroTop from "./images/hero-bg-top.svg";
 import HeroCenter from "./images/hero-bg-center.svg";
 import HeroBottom from "./images/hero-bg-bottom.svg";
+import PenginLogo from "./images/pengin0.svg"
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -64,10 +65,31 @@ class App extends Component {
           <img src={HeroTop} alt="Hero's Section Top Part SVG" className="absolute w-screen h-auto z-20 top-0" />
           <img src={HeroCenter} alt="Hero's Section Center Part SVG - Sun" className="absolute w-screen h-screen z-10 top-20" />
           <img src={HeroBottom} alt="Hero's Section Bottom Part SVG" className="absolute w-screen h-auto z-20 bottom-0" />
-          <div className="flex z-20">
+          {/* <div className="flex z-20">
             <p className=" flex text-white z-20">Do you see the future coming?</p>
+          </div> */}
+        </div>
+
+        <div className="bg-background p-10">
+          <div>
+            <div className="flex flex-row w-24 h-24 items-center justify-center rounded-full p-2">
+              <img src={PenginLogo} alt="Pengin Logo" />
+            </div>
+            <div className="flex flex-col w-full">
+              <h1 className="flex w-full text-xl text-left text-white">Issue your Letter of Credit</h1>
+              <p className="flex w-full text-left text-white">For what are you waiting for?</p>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <form action="" method="post">
+              <input type="text" name="" id="" placeholder="Your company name" className="w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50" />
+              <input type="text" name="" id="" placeholder="Your company ETH address" className="w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50" />
+              <input type="text" name="" id="" placeholder="Your contract subject" className="w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50" />
+              <input type="number" name="" id="" placeholder="Your contract value" className="w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50" />
+            </form>
           </div>
         </div>
+
         <h1 className="">Good to Go!</h1>
         <p>Your Truffle Box is installed and ready.</p>
         <h2>Smart Contract Example</h2>
