@@ -4,6 +4,10 @@ import getWeb3 from "./getWeb3";
 import './styles/output.css'
 
 import "./App.css";
+// import ImgContainer from "./components/ImgContainer";
+import HeroTop from "./images/hero-bg-top.svg";
+import HeroCenter from "./images/hero-bg-center.svg";
+import HeroBottom from "./images/hero-bg-bottom.svg";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -55,6 +59,12 @@ class App extends Component {
     }
     return (
       <div className="App">
+        <div className="w-screen h-screen relative bg-black">
+          {/* <ImgContainer path={HeroTop} className="border-2 w-1000 h-1000" /> */}
+          <img src={HeroTop} alt="Hero's Section Top Part SVG" className="w-screen h-screen z-10 object-top" />
+          <img src={HeroCenter} alt="Hero's Section Center Part SVG - Sun" className="w-screen h-screen z-0 object-center" />
+          <img src={HeroBottom} alt="Hero's Section Bottom Part SVG" className="w-screen h-screen z-10 object-bottom" />
+        </div>
         <h1 className="">Good to Go!</h1>
         <p>Your Truffle Box is installed and ready.</p>
         <h2>Smart Contract Example</h2>
@@ -66,7 +76,6 @@ class App extends Component {
           Try changing the value stored on <strong>line 42</strong> of App.js.
         </p>
         <div>The stored value is: {this.state.storageValue}</div>
-        <div className="border-8 border-primary-500 text-blue-900 text-3xl hover:text-primarydark bg-background hover:text-md"><p>Hi!</p></div>
       </div>
     );
   }
