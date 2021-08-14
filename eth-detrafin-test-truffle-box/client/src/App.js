@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json"; // Makes the Smart Contracts ABI available  
-import getWeb3 from "./getWeb3";
+// import SimpleStorageContract from "./contracts/SimpleStorage.json"; // Makes the Smart Contracts ABI available  
+// import getWeb3 from "./getWeb3";
 import './styles/output.css'
 
 import "./App.css";
@@ -13,7 +13,7 @@ class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
   componentDidMount = async () => {
-    try {
+    /* try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
 
@@ -37,11 +37,11 @@ class App extends Component {
         `Failed to load web3, accounts, or contract. Check console for details.`,
       );
       console.error(error);
-    }
+    } */
   };
 
   runExample = async () => {
-    const { accounts, contract } = this.state;
+    /* const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
     await contract.methods.set(5).send({ from: accounts[0] });
@@ -50,20 +50,23 @@ class App extends Component {
     const response = await contract.methods.get().call();
 
     // Update state with the result.
-    this.setState({ storageValue: response });
+    this.setState({ storageValue: response }); */
   };
 
   render() {
-    if (!this.state.web3) {
+    /* if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
-    }
+    } */
     return (
       <div className="App">
-        <div className="w-screen h-screen relative bg-black">
+        <div className="relative h-screen bg-black">
           {/* <ImgContainer path={HeroTop} className="border-2 w-1000 h-1000" /> */}
-          <img src={HeroTop} alt="Hero's Section Top Part SVG" className="w-screen h-screen z-10 object-top" />
-          <img src={HeroCenter} alt="Hero's Section Center Part SVG - Sun" className="w-screen h-screen z-0 object-center" />
-          <img src={HeroBottom} alt="Hero's Section Bottom Part SVG" className="w-screen h-screen z-10 object-bottom" />
+          <img src={HeroTop} alt="Hero's Section Top Part SVG" className="absolute w-screen h-auto z-20 top-0" />
+          <img src={HeroCenter} alt="Hero's Section Center Part SVG - Sun" className="absolute w-screen h-screen z-10 top-20" />
+          <img src={HeroBottom} alt="Hero's Section Bottom Part SVG" className="absolute w-screen h-auto z-20 bottom-0" />
+          <div className="flex z-20">
+            <p className=" flex text-white z-20">Do you see the future coming?</p>
+          </div>
         </div>
         <h1 className="">Good to Go!</h1>
         <p>Your Truffle Box is installed and ready.</p>
