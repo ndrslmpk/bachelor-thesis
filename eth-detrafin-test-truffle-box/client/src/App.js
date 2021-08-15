@@ -60,6 +60,12 @@ class App extends Component {
     } */
     return (
       <div className="App">
+
+        <div id="navbar">
+
+        </div>
+
+
         <div className="relative h-screen bg-black">
           {/* <ImgContainer path={HeroTop} className="border-2 w-1000 h-1000" /> */}
           <img src={HeroTop} alt="Hero's Section Top Part SVG" className="absolute w-screen h-auto z-20 top-0" />
@@ -70,16 +76,20 @@ class App extends Component {
           </div> */}
         </div>
 
-        <div className="bg-background p-10">
+        <div className="flex flex-col bg-background p-10">
           <div>
             <div className="flex flex-row w-24 h-24 items-center justify-center rounded-full p-2">
               <img src={PenginLogo} alt="Pengin Logo" />
             </div>
             <div className="flex flex-col w-full">
-              <h1 className="flex w-full text-xl text-left text-white font-mono font">Issue your Letter of Credit</h1>
-              <p className="flex w-full text-left text-white">What are you waiting for?</p>
+              <h1 className="flex w-full text-xl text-left text-white font-mono font">Issue your Ethereum-based Letter of Credit</h1>
+              <p className="flex w-full text-left text-white">Without any intermediary bank.</p>
+              <p className="flex w-full text-left text-white">What are you waiting for? -> Connect your MetaMask Wallet and get started.</p>
             </div>
           </div>
+
+
+
           <div id="animatedBlock" className="">
             <div className="flex flex-col    border-2 border-white border-dashed     mt-10 p-10 rounded-2xl shadow-lg">
               <h1 className="flex w-full justify-center mb-5     text-white text-xl font-mono font-bold">Define your Contract's (NFT) parameters</h1>
@@ -105,6 +115,27 @@ class App extends Component {
             </div>
           </div>
         </div>
+
+      <div className="bg-gray-500">
+        <h1 className="flex w-full justify-center pt-10 mb-5     text-black text-xl font-mono font-bold">Manage your existing contracts</h1>
+        <p className="flex w-full text-left text-black">The following section shall provide you a dashboard for your given Letters of Credit</p>
+        <div id="sc-dashboard">
+          <p>Contract Name: String</p>
+          <button className="border rounded-md p-2 hover:bg-primary"> More details</button>
+          <div id="sc-details" className="flex my-5 p-5">
+            <ul className="flex flex-col list-disc">
+              <li className="w-full list-disc"><p> Contract Value: </p></li>
+              <li className="flex w-full">Contract Name:</li>
+              <li className="flex w-full">Contract Phase:</li>
+              <li className="flex w-full">Contract created at:</li>
+              <li className="flex w-full">Contract creator/importer: Address</li>
+              <li className="flex w-full">Contract contrahent/exporter: Address</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+
 
         <h1 className="">Good to Go!</h1>
         <p>Your Truffle Box is installed and ready.</p>
