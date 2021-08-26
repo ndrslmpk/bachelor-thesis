@@ -9,6 +9,7 @@ import HeroTop from "./images/hero-bg-top.svg";
 import HeroCenter from "./images/hero-bg-center.svg";
 import HeroBottom from "./images/hero-bg-bottom.svg";
 import PenginLogo from "./images/pengin0.svg"
+import SmartContractManagementComponent from "./components/SmartContractManagementComponent";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
@@ -84,7 +85,7 @@ class App extends Component {
             <div className="flex flex-col w-full">
               <h1 className="flex w-full text-xl text-left text-white font-mono font">Issue your Ethereum-based Letter of Credit</h1>
               <p className="flex w-full text-left text-white">Without any intermediary bank.</p>
-              <p className="flex w-full text-left text-white">What are you waiting for? -> Connect your MetaMask Wallet and get started.</p>
+              <p className="flex w-full text-left text-white">What are you waiting for? Connect your MetaMask Wallet and get started.</p>
             </div>
           </div>
 
@@ -119,22 +120,13 @@ class App extends Component {
       <div className="bg-gray-500">
         <h1 className="flex w-full justify-center pt-10 mb-5     text-black text-xl font-mono font-bold">Manage your existing contracts</h1>
         <p className="flex w-full text-left text-black">The following section shall provide you a dashboard for your given Letters of Credit</p>
-        <div id="sc-dashboard">
-          <p>Contract Name: String</p>
-          <button className="border rounded-md p-2 hover:bg-primary"> More details</button>
-          <div id="sc-details" className="flex my-5 p-5">
-            <ul className="flex flex-col list-disc">
-              <li className="w-full list-disc"><p> Contract Value: </p></li>
-              <li className="flex w-full">Contract Name:</li>
-              <li className="flex w-full">Contract Phase:</li>
-              <li className="flex w-full">Contract created at:</li>
-              <li className="flex w-full">Contract creator/importer: Address</li>
-              <li className="flex w-full">Contract contrahent/exporter: Address</li>
-            </ul>
-          </div>
-        </div>
+          <SmartContractManagementComponent className="flex flex-row justify-center w-full" />
       </div>
       
+      <div>
+        <h1> Here will be all openly tendered contracts displayed</h1>
+      </div>
+
 
 
         <h1 className="">Good to Go!</h1>
