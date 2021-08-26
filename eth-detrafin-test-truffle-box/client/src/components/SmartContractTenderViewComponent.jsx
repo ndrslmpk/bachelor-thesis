@@ -1,0 +1,1 @@
+/* This Component should be used to maintain the state of all contracts that are currently published for tender purposes */
