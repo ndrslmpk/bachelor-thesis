@@ -2,7 +2,7 @@ let Lc = artifacts.require("./Lcfactory.sol");
 
 let lcInstance;
 
-conract('Letter of Credit', function(accounts){
+contract('Letter of Credit', function(accounts){
     //accounts[0] is the default account
     
     /*
@@ -14,6 +14,8 @@ conract('Letter of Credit', function(accounts){
             assert(lcInstance !== undefined, 'Letter of Credit Contract should be defined');
         });
     });
+
+
 
 
 })

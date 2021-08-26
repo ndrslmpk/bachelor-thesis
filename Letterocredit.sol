@@ -1,17 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
-contract Letterofcredit{
+import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
+
+contract Letterofcredit is ERC721Full{
     
     //set initial time of first deployment of the contract = GLOBAL VARIABLE DEPLOYMENT
     uint256 public createTime;
     uint32 id;
-    address owner;
-    address exporter;
-    address importer;
-    address guarantor;
-    uint value; // Value of Goods that is secured 
+    address public owner;
+    address public exporter;
+    address public importer;
+    address public guarantor;
+    uint public value; // Value of Goods that is secured 
+    
+    mapping (address=> Bidder) bidders;
     uint biddingPeriod;
+
+    uint public interestRate;
 
 
 //  ###############################
@@ -38,8 +44,6 @@ contract Letterofcredit{
     }
 
     constructor(){
-        
-
         createTime = block.timestamp;
     }
 
@@ -49,6 +53,10 @@ contract Letterofcredit{
         Expired
     }
 
+    struct Bidder{
+        string name;
+        address addr;
+    }
 
 
 
@@ -58,5 +66,7 @@ contract Letterofcredit{
         }
 
     }
+
+
     
 }
