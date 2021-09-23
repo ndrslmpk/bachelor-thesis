@@ -33,6 +33,21 @@ contract OffchainContract is IERC721 {
         contractOwner = msg.sender;
     }
 
+    /**
+     *  ERC165 Functions
+     */
+
+    function supportsInterface(bytes4 interfaceId)
+        external
+        view
+        override
+        returns (bool)
+    {}
+
+    /**
+     *  ERC721 Functions
+     */
+
     function balanceOf(address _owner)
         external
         view
@@ -68,7 +83,7 @@ contract OffchainContract is IERC721 {
         require(msg.sender == from);
         // require(msg.sender == contractsOwnerList[tokenId]); //checks whether the requested tokenId has an owner with the sender's address
 
-        Transfer(from, to, tokenId);
+        emit Transfer(from, to, tokenId);
     }
 
     function transferFrom(
@@ -112,25 +127,29 @@ contract OffchainContract is IERC721 {
     ) external override {
         require(from != address(0), "from cannot be the zero address");
         require(to != address(0), "from cannot be the zero address");
-        require(contractsOwnerList[tokenId] == from);
+        require(contractsOwnerList[tokenId].length > 0);
         require(checkOwnership(tokenId, from));
-        Transfer(from, to, tokenId);
+        emit Transfer(from, to, tokenId);
     }
 
     function checkOwnership(uint256 tokenId, address checkOwner)
         public
         returns (bool)
     {
+        require(tokenId != 0);
+        require(checkOwner != address(0));
         address[] memory _owners = contractsOwnerList[tokenId];
+        bool isOwner = false;
 
-        // Checks whether the
+        // Checks whether the transmitted person is owner of the token
         for (uint256 i = 0; i < contractsOwnerList[tokenId].length; i++) {
             address _addr = _owners[i];
             if (_addr == checkOwner) {
-                return true;
-            } else {
-                return false;
+                isOwner = true;
+                return isOwner;
             }
         }
+
+        return isOwner;
     }
 }
