@@ -9,11 +9,20 @@ module.exports = {
       host: "127.0.0.1",
       port: 8545,
       network_id: "*",
-    }
+    },
   },
   compilers: {
     solc: {
       version: "^0.8.0",
-    }
-  }
+      settings: {
+        /* 
+          Optimizer is able to allocate assigned variables in a more efficient way. For example it adds up multiple uint64 to a whole uint256 block. 
+        */
+        optimizer: {
+          enabled: true,
+          runs: 200,
+        },
+      },
+    },
+  },
 };
