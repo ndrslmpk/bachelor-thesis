@@ -1,0 +1,43 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.2.0",
+    "@openzeppelin/contracts": "^4.3.0",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-scripts": "^4.0.3",
+    "web3": "1.2.2"
+  },
+  "scripts": {
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run watch:css && react-scripts build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "file-loader": "^6.2.0",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "svg-url-loader": "^7.1.1",
+    "tailwindcss": "^2.2.7"
+  }
+}
