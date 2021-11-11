@@ -12,6 +12,7 @@ contract Escrow{
     address payable importer; 
     address payable exporter;
     address carrier;
+    uint value;
     
     bool isTransfered = false;
     
@@ -33,16 +34,19 @@ contract Escrow{
     }
 
     
-    constructor (address payable _carrier, address payable _exporter) {
+    constructor (address payable _carrier, address payable _exporter, uint256 _value) {
         require(_carrier != address(0), "Carrier missing");
         require(_exporter != address(0), "Exporter missing");
         importer = payable(msg.sender);
         carrier = _carrier;
         exporter = _exporter;
+        value = _value;
     }
     
     function deposit(address _exporter) public onlyImporter payable {
         require(msg.value > 0);
+        // @constraint: just the exact deposit is accepted
+        require(msg.value == value);
         uint256 amount = msg.value;
         deposits[_exporter] = deposits[_exporter] + amount;
     }
