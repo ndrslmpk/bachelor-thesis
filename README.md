@@ -1,4 +1,8 @@
-is# woly
+# woly
+
+## Starting the project
+
+After cloning the project you have the possibility to run `npm install` to install all dependencies. For running the further environment skip to the following Truffle section.
 
 ## Used technology
 
@@ -21,6 +25,15 @@ is used to develop the main building blocks of a decentralized L/C. It includes 
 
 - [X] `Lc.sol` provides
 - [X] `Esrow.sol` implies logic for the main Escrow functionality that is been used to free up funds on product transfer.
-- [] `LcFactory` shall be used to manage the issuance process of L/Cs
-- [] `EUR-T` shall serve as medium of exchange
-- [] `Auction` is the Logic Layer to allow external investor to profit from the participation in L/C transactions
+- [ ] `LcFactory` shall be used to manage the issuance process of L/Cs
+- [ ] `EUR-T` shall serve as medium of exchange
+- [ ] `Auction` is the Logic Layer to allow external investor to profit from the participation in L/C transactions
+
+### Truffle
+facilitates the development process, due to its integration with ganache. It allows us to run a private network.
+
+*After installation you are able to run the following commands*
+
+`truffle compile`
+`truffle develop`
+`truffle migrate`
