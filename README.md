@@ -25,9 +25,9 @@ is used to develop the main building blocks of a decentralized L/C. It includes 
 
 - [X] `Lc.sol` provides
 - [X] `Esrow.sol` implies logic for the main Escrow functionality that is been used to free up funds on product transfer.
-- [ ] `LcFactory` shall be used to manage the issuance process of L/Cs
-- [ ] `EUR-T` shall serve as medium of exchange
-- [ ] `Auction` is the Logic Layer to allow external investor to profit from the participation in L/C transactions
+- [ ] `LcFactory.sol` shall be used to manage the issuance process of L/Cs
+- [ ] `EURT.sol` shall serve as stable medium of exchange. A stablecoin implementation combining deposited Euro and issued ERC-20 tokens enable users of L/Cs to hedge against forex risks. 
+- [ ] `Auction.sol` is the Logic Layer to allow external investor to profit from the participation in L/C transactions
 
 ### Truffle
 facilitates the development process, due to its integration with ganache. It allows us to run a private network.
