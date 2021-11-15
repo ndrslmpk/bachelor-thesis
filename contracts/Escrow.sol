@@ -9,12 +9,12 @@ contract Escrow{
         Is the only person who really can use the ESCROW account
     */
     
-    address payable owner;
-    address payable importer; 
-    address payable exporter;
-    address carrier;
-    uint value;
-    State state;
+    address payable public owner;
+    address payable public importer; 
+    address payable public exporter;
+    address public carrier;
+    uint public value;
+    State public state;
     
     bool isTransfered = false;
 

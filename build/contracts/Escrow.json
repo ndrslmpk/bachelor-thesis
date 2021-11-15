@@ -12513,7 +12513,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.2",
-  "updatedAt": "2021-11-13T23:18:33.526Z",
+  "updatedAt": "2021-11-15T16:40:35.045Z",
   "devdoc": {
     "events": {
       "EscrowCreated(address,address,address,uint256)": {

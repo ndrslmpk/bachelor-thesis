@@ -1,0 +1,119 @@
+{
+  "contractName": "Helpers",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Helpers.sol\":\"Helpers\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Helpers.sol\":{\"keccak256\":\"0xfb61fe0dea0c9e932e49a13a766bb4f8ce563cd209a8474d20416453c219d1ec\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://000fb621c79a988369039f7842e4386a1d39992b1cabd9b2c447bc44e90bc1f8\",\"dweb:/ipfs/QmTfkf3CLyXmgZFCj259YS9tFjqy4zwUTJjEk76P5KyCbv\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122063685809e44af5e4558a32fa22a07c91d15dddc1feb21710d4af109c7fb30add64736f6c634300080a0033",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122063685809e44af5e4558a32fa22a07c91d15dddc1feb21710d4af109c7fb30add64736f6c634300080a0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "68:23:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "68:23:1:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.8.10;\r\n\r\ncontract Helpers {\r\n\r\n}",
+  "sourcePath": "C:\\Projects\\woly\\contracts\\Helpers.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Helpers.sol",
+    "exportedSymbols": {
+      "Helpers": [
+        382
+      ]
+    },
+    "id": 383,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 381,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".10"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Helpers",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 382,
+        "linearizedBaseContracts": [
+          382
+        ],
+        "name": "Helpers",
+        "nameLocation": "77:7:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 383,
+        "src": "68:23:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:51:1"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/Helpers.sol",
+    "exportedSymbols": {
+      "Helpers": [
+        382
+      ]
+    },
+    "id": 383,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 381,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".10"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Helpers",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 382,
+        "linearizedBaseContracts": [
+          382
+        ],
+        "name": "Helpers",
+        "nameLocation": "77:7:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 383,
+        "src": "68:23:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "40:51:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.10+commit.fc410830.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.2",
+  "updatedAt": "2021-11-15T16:40:35.055Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
