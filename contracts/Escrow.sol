@@ -64,7 +64,7 @@ contract Escrow{
     /// @param _value is value needed to enable the LC transaction
     /// @notice Assumption: importer is owner of the Escrow account, 
     /// @dev Assumption might be changed in later version into LcFactory 
-    constructor (address payable _carrier, address payable _exporter, uint256 _value) {
+    constructor (address payable _exporter, address payable _carrier, uint256 _value) {
         require(_carrier != address(0), "Carrier missing");
         require(_exporter != address(0), "Exporter missing");
         owner = payable(msg.sender); //we assume the impoert is the person calling
