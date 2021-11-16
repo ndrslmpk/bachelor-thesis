@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. Look at https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.2.pdf to format this file"
+authors:
+  - family-names: "Lempik"
+    given-names: "Andreas Michael"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+references:
+  - scope: abstract
+title: "Towards a more decentralized trade finance ecosystem: Design and prototypical implementation of a Decentralized Web Application for processing a Letter of Credit"
+version: 1.0.0
+date-released: 2021-12-09
+url: "https://github.com/ndrslmpk/woly"
