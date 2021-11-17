@@ -50,4 +50,28 @@ contract("Testing Escrow SC", (accounts) => {
       );
     });
   });
+  describe("Function (positive) testing", async () => {
+    it("Importer deposits", async () => {
+      var _deposit = 10;
+      const _exporter = accounts[1];
+      const escrow = await TestEscrow.deployed();
+      await escrow.deposit(_exporter, { from: accounts[0], value: _deposit });
+      assert.equal(
+        await escrow.deposits(accounts[1]),
+        10,
+        "10 was not in the first account"
+      );
+    });
+    it("Importer withdraw", async () => {});
+    it("Carrier confirmsHandover", async () => {});
+    it("Importer deposits", async () => {});
+  });
+  describe("Function (false) testing", async () => {
+    it("Importer cannot withdraw after handover", async () => {});
+    it("Export cannot withdraw while waitingForDeposit", async () => {});
+    it("Export cannot withdraw while waiting", async () => {});
+    it("Carrier cannot withdraw before deposit", async () => {});
+    it("Carrier cannot withdraw after deposit", async () => {});
+    it("Carrier cannot withdraw after handover", async () => {});
+  });
 });
