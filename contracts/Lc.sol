@@ -10,7 +10,7 @@ contract Lc {
   address payable public importer;
   address payable public exporter;
   address public carrier;
-  State public state;
+  Status public status;
   bool public importerAgreed = false;
   bool public exporterAgreed = false;
 
@@ -26,9 +26,9 @@ contract Lc {
 
 /// @notice Enum allows to define certain states of the lc to determine which actions will be allowed and avoided
 /// @dev opened is initiated after calling the constructor
-/// @dev confirmed is the state after the signing, thus agreeing, of both parties
-/// @dev closed is the state after each party got their needed asset (e.g. product and money)
-  enum State {
+/// @dev confirmed is the status after the signing, thus agreeing, of both parties
+/// @dev closed is the status after each party got their needed asset (e.g. product and money)
+  enum Status {
     opened, confirmed, closed
   }
 
@@ -40,7 +40,7 @@ contract Lc {
   constructor() {
     uint256 _validityPeriod = 90 days;
     validityTime = block.timestamp + _validityPeriod;
-    state = State.opened;
+    status = Status.opened;
     importerAgreed = true; //assumption that importer always initializes contract 
   }
 

@@ -14,34 +14,34 @@ contract Escrow{
     address payable public exporter;
     address public carrier;
     uint public value;
-    State public state;
+    Status public status;
     
     bool isTransfered = false;
 
-    /// @dev State is used to change between 
-    enum State {
+    /// @dev Status is used to change between 
+    enum Status {
       waitingForDeposit, waitingForHandover, completed
     }
     
     /// @dev questionable if a mapping is needed or indeed if a mapping with a struct might be used to avoid duplicate addresses with multiple values
-    /// this would lead to the need for an extra mechanism to check for a certain set of value that might be released due to a certain state (variable)
+    /// this would lead to the need for an extra mechanism to check for a certain set of value that might be released due to a certain status (variable)
 
     /* 
       E.g.  (uint)   =>    struct balance()
             (LC.id)  =>    (address payee, int)
     */ 
     mapping(address => uint256) public deposits; 
-    mapping(address => State) public states; // Unused so far. potentially needs to include more differentiated logic, if multiple payments shall be managed by this escrow.
+    mapping(address => Status) public states; // Unused so far. potentially needs to include more differentiated logic, if multiple payments shall be managed by this escrow.
 
     /// @notice Events help to search for certain happenings 
     /// @dev [ ] add details
     event EscrowCreated(address indexed _importer, address indexed _exporter, address indexed _carrier, uint _value);
-    event Deposited(address indexed importer, uint256 weiAmount);
+    event Deposited(address indexed _importer, uint256 _weiAmount, address indexed _for);
     event Handover(address indexed _from, address indexed _to);
-    event Withdrawn(address indexed withdrawer, uint256 weiAmount);
+    event Withdrawn(address indexed _withdrawer, uint256 _weiAmount);
 
-    modifier requireState(State _state){
-      require(_state == state);
+    modifier requireState(Status _status){
+      require(_status == status);
       _;
     }
 
@@ -79,35 +79,35 @@ contract Escrow{
         exporter = _exporter;
         carrier = _carrier;
         value = _value;
-        state = State.waitingForDeposit;
+        status = Status.waitingForDeposit;
         emit EscrowCreated(msg.sender, _exporter, _carrier, _value);
     }
     
     /// @notice Explain to an end user what this does
     /// @dev Explain to a developer any extra details
     /// @param _exporter a parameter just like in doxygen (must be followed by parameter name)
-    function deposit(address _exporter) public onlyImporter requireState(State.waitingForDeposit) payable {
+    function deposit(address _exporter) public onlyImporter requireState(Status.waitingForDeposit) payable {
         require(msg.value > 0, "NO ETHER SEND: you did not deposit anything");
         require(msg.value == value, "WRONG VALUE SEND: the transfered ETH value does not match the ammount previously defined in the LC");
         uint256 amount = msg.value;
         deposits[_exporter] = deposits[_exporter] + amount;
-        state = State.waitingForHandover;
-        emit Deposited(msg.sender, msg.value);
+        status = Status.waitingForHandover;
+        emit Deposited(msg.sender, msg.value, _exporter);
     }
     
-    function withdrawByImporter(address _exporter) public onlyImporter requireState(State.waitingForHandover){
-        require(state == State.waitingForDeposit, "PRODUCT ALREADY SHIPPED: You cannot withdraw your money after the product has been shipped already");
+    function withdrawByImporter(address _exporter) public onlyImporter requireState(Status.waitingForHandover){
+        require(status == Status.waitingForDeposit, "PRODUCT ALREADY SHIPPED: You cannot withdraw your money after the product has been shipped already");
         uint _payment = deposits[_exporter];
         importer.transfer(_payment);
         deposits[_exporter] = 0;
-        state = State.waitingForDeposit;
+        status = Status.waitingForDeposit;
         emit Withdrawn(msg.sender, _payment);
     }
     
     /// @notice Carrier confirms the reception of the underlying asset and its direct forwarding to the importr
     /// @dev The automated transfer of money might be included here, but is left out as costs for the carrier shall be minimal
-    function confirmHandover() public onlyCarrier requireState(State.waitingForHandover){
-        state = State.completed;
+    function confirmHandover() public onlyCarrier requireState(Status.waitingForHandover){
+        status = Status.completed;
         emit Handover(exporter, importer);
     }
 
@@ -116,8 +116,8 @@ contract Escrow{
     /// @dev After transaction is performed, this Escrow Contract might be 
     /// @notice !!! Additional feature: What happens if we manage multiple escrow positions within the contract? That might lead to multiple positions of an exporter. How to solve that issue?
     /// @dev After transaction is performed, this Escrow Contract might be 
-    function withdrawByExporter() public onlyExporter requireState(State.completed){
-        require(state == State.completed, "The product has not been handed over to the Carrier yet.");
+    function withdrawByExporter() public onlyExporter requireState(Status.completed){
+        require(status == Status.completed, "The product has not been handed over to the Carrier yet.");
         uint256 _payment = deposits[exporter]; 
         deposits[exporter] = 0;
         exporter.transfer(_payment);
