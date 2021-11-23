@@ -152,22 +152,6 @@ class App extends Component {
           </p>
           <SmartContractManagementComponent className='flex flex-row justify-center w-full' />
         </div>
-
-        <div>
-          <h1> Here will be all openly tendered contracts displayed</h1>
-
-          <h1 className=''>Good to Go!</h1>
-          <p>Your Truffle Box is installed and ready.</p>
-          <h2>Smart Contract Example</h2>
-          <p>
-            If your contracts compiled and migrated successfully, below will
-            show a stored value of 5 (by default).
-          </p>
-          <p className='text-green'>
-            Try changing the value stored on <strong>line 42</strong> of App.js.
-          </p>
-          <div>The stored value is: {this.state.storageValue}</div>
-        </div>
       </div>
     );
   }
