@@ -1,5 +1,6 @@
 /* 
-  @dev: web3 instance is available in each test
+@dev: web3 instance is available in each test
+@dev: Keep in mind that subsequent test cases and their function calls and state alterations for a contract are persisisting in the test environment. Meaning that if a Smart Contract has a balance of 0 in the initial test and the test cases increases the balance to 99. In the next test case a balance of 99 will be available.
 */
 
 // Contracts that need to be interacted within the test
@@ -12,9 +13,9 @@ contract("Testing Escrow SC", (accounts) => {
 
   describe("Initialization Testing", async () => {
     it("Contract value is according", async () => {
-      const escrow = await TestEscrow.deployed();
-      const escrowValue = await escrow.value();
-      assert.equal(escrowValue, 10, "100 was not in the first account");
+      const _escrow = await TestEscrow.deployed();
+      const escrowVal = await _escrow.value();
+      assert.equal(escrowVal, 10, "100 was not in the first account");
     });
 
     it("Accounts are initialized properly", async () => {
@@ -44,8 +45,8 @@ contract("Testing Escrow SC", (accounts) => {
     it("State is initialized properly", async () => {
       const escrow = await TestEscrow.deployed();
       assert.equal(
-        await escrow.state(),
-        TestEscrow.State.waitingForDeposit,
+        await escrow.status(),
+        TestEscrow.Status.waitingForDeposit,
         "Initital State of Escrow should be waitingForDeposit"
       );
     });
@@ -53,18 +54,63 @@ contract("Testing Escrow SC", (accounts) => {
   describe("Function (positive) testing", async () => {
     it("Importer deposits", async () => {
       var _deposit = 10;
-      const _exporter = accounts[1];
       const escrow = await TestEscrow.deployed();
-      await escrow.deposit(_exporter, { from: accounts[0], value: _deposit });
+      await escrow.deposit(exporter, { from: accounts[0], value: _deposit });
       assert.equal(
         await escrow.deposits(accounts[1]),
-        10,
-        "10 was not in the first account"
+        _deposit,
+        `${_deposit} was not deposited for the account[1] (exporter)`
       );
     });
-    it("Importer withdraw", async () => {});
-    it("Carrier confirmsHandover", async () => {});
-    it("Importer deposits", async () => {});
+    it("Importer withdraws", async () => {
+      const escrow = await TestEscrow.deployed();
+      const _escrowBalanceBefore = await web3.eth.getBalance(escrow.address);
+      var _deposit = 10;
+
+      await escrow.withdrawByImporter(exporter, { from: importer });
+
+      const _escrowBalanceAfter = await web3.eth.getBalance(escrow.address);
+      assert.equal(
+        await web3.eth.getBalance(escrow.address),
+        0,
+        `withdrawByImporter() is not withdrawing EscrowContracts ether-balance to zero`
+      );
+      assert.notEqual(
+        _escrowBalanceAfter,
+        _escrowBalanceBefore,
+        `withdrawByImporter() does not change the TestEscrow.balance`
+      );
+    });
+    it("Carrier confirmsHandover", async () => {
+      var _deposit = 10;
+      const escrow = await TestEscrow.deployed();
+      await escrow.deposit(exporter, { from: accounts[0], value: _deposit });
+      await escrow.confirmHandover({ from: carrier });
+      assert.equal(
+        await escrow.status(),
+        TestEscrow.Status.completed,
+        "confirmHandover() does not change TestEscrow Status"
+      );
+    });
+    it("Exporter withdraws", async () => {
+      const escrow = await TestEscrow.deployed();
+      const _escrowBalanceBefore = await web3.eth.getBalance(escrow.address);
+      var _deposit = 10;
+
+      await escrow.withdrawByExporter({ from: exporter });
+
+      const _escrowBalanceAfter = await web3.eth.getBalance(escrow.address);
+      assert.equal(
+        await web3.eth.getBalance(escrow.address),
+        0,
+        `withdrawByExporter() is not withdrawing EscrowContracts ether-balance to zero`
+      );
+      assert.notEqual(
+        _escrowBalanceAfter,
+        _escrowBalanceBefore,
+        `withdrawByExporter() does not change the TestEscrow.balance`
+      );
+    });
   });
   describe("Function (false) testing", async () => {
     it("Importer cannot withdraw after handover", async () => {});
