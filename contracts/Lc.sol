@@ -29,11 +29,16 @@ contract Lc {
 /// @dev confirmed is the status after the signing, thus agreeing, of both parties
 /// @dev closed is the status after each party got their needed asset (e.g. product and money)
   enum Status {
-    opened, confirmed, closed
+    opened, changed, confirmed, closed
   }
 
   uint256[] internal allContracts;
   uint256 validityTime;
+
+  event LcOpened();
+  event LcChanged();
+  event LcConfirmed();
+  event LcClosed();
 
   ///
   /// Assumptions: Importer is the only party calling the LC constructor

@@ -96,7 +96,7 @@ contract Escrow{
     }
     
     function withdrawByImporter(address _exporter) public onlyImporter requireState(Status.waitingForHandover){
-        require(status == Status.waitingForDeposit, "PRODUCT ALREADY SHIPPED: You cannot withdraw your money after the product has been shipped already");
+        require(status == Status.waitingForHandover, "PRODUCT ALREADY SHIPPED: You cannot withdraw your money after the product has been shipped already");
         uint _payment = deposits[_exporter];
         importer.transfer(_payment);
         deposits[_exporter] = 0;
