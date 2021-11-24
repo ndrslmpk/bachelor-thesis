@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 // import SimpleStorageContract from "./contracts/SimpleStorage.json"; // Makes the Smart Contracts ABI available
+// import Escrow from "../../build/contracts/Escrow.json"; // Makes the Smart Contracts ABI available
 // import getWeb3 from "./getWeb3";
 import "./styles/output.css";
 
 import "./App.css";
 // import ImgContainer from "./components/ImgContainer";
 
-import PenginLogo from "./images/pengin0.svg";
 import SmartContractManagementComponent from "./components/SmartContractManagementComponent";
+import Navbar from "./components/Navbar";
+import CreateContract from "./components/CreateContract";
+import TransactionDashboard from "./components/TransactionDashboard";
+import Footer from "./components/Footer";
 // import Hero from "./components/Hero";
 
 class App extends Component {
@@ -65,81 +69,10 @@ class App extends Component {
     } */
     return (
       <div className='App'>
-        <div id='navbar'></div>
-
-        {/* <Hero/> */}
-
-        <div className='flex flex-col bg-background p-10'>
-          <div>
-            <div className='flex flex-row w-24 h-24 items-center justify-center rounded-full p-2'>
-              <img src={PenginLogo} alt='Pengin Logo' />
-            </div>
-            <div className='flex flex-col w-full'>
-              <h1 className='flex w-full text-xl text-left text-white font-mono font'>
-                Issue your Ethereum-based Letter of Credit
-              </h1>
-              <p className='flex w-full text-left text-white'>
-                Without any intermediary bank.
-              </p>
-              <p className='flex w-full text-left text-white'>
-                What are you waiting for? Connect your MetaMask Wallet and get
-                started.
-              </p>
-            </div>
-          </div>
-
-          <div id='animatedBlock' className=''>
-            <div className='flex flex-col    border-2 border-white border-dashed     mt-10 p-10 rounded-2xl shadow-lg'>
-              <h1 className='flex w-full justify-center mb-5     text-white text-xl font-mono font-bold'>
-                Define your Contract's (NFT) parameters
-              </h1>
-              <form action='' method='post'>
-                <input
-                  type='text'
-                  name=''
-                  id=''
-                  placeholder='Your company name'
-                  className='font-mono w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50'
-                />
-                <input
-                  type='text'
-                  name=''
-                  id=''
-                  placeholder='Your company ETH address'
-                  className='font-mono w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50'
-                />
-                <input
-                  type='text'
-                  name=''
-                  id=''
-                  placeholder='Your contract subject'
-                  className='font-mono w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50'
-                />
-                <input
-                  type='number'
-                  name=''
-                  id=''
-                  placeholder='Your contract value'
-                  className='font-mono w-1/2 mx-5 my-1 border-b bg-transparent border-primary border-solid text-gray-300 focus:text-primarydarkdark focus:placeholder-primary placeholder-gray-500 placeholder-opacity-50'
-                />
-                <div className='flex flex-row items-end mt-10'>
-                  <div className='flex w-1/2 mx-2 justify-end'>
-                    <button className='w-1/3 bg-transparent bg-primarydark hover:bg-primarydark text-primarydarkdark font-semibold hover:text-white py-2 px-4 border border-primarydark hover:border-transparent rounded        transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
-                      Create
-                    </button>
-                  </div>
-                  <div className='flex w-1/2 mx-2 justify-start'>
-                    <button
-                      className='w-1/3 bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded'
-                      disabled
-                    >
-                      Reset
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+        <Navbar />
+        <div className='flex flex-row w-full'>
+          <CreateContract className='flex w-1/2' />
+          <TransactionDashboard className='flex w-1/2' />
         </div>
 
         <div className='bg-gray-500'>
@@ -152,6 +85,7 @@ class App extends Component {
           </p>
           <SmartContractManagementComponent className='flex flex-row justify-center w-full' />
         </div>
+        <Footer />
       </div>
     );
   }
