@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-// import SimpleStorageContract from "./contracts/SimpleStorage.json"; // Makes the Smart Contracts ABI available
+import { Web3ReactProvider } from "@web3-react/core";
+import Web3 from "web3";
 // import Escrow from "../../build/contracts/Escrow.json"; // Makes the Smart Contracts ABI available
 // import getWeb3 from "./getWeb3";
 import "./styles/output.css";
-
 import "./App.css";
-// import ImgContainer from "./components/ImgContainer";
 
 import SmartContractManagementComponent from "./components/SmartContractManagementComponent";
 import Navbar from "./components/Navbar";
 import CreateContract from "./components/CreateContract";
 import TransactionDashboard from "./components/TransactionDashboard";
 import Footer from "./components/Footer";
+import { WalletConnector } from "./components/wallet/WalletConnector";
 // import Hero from "./components/Hero";
 
 class App extends Component {
@@ -50,6 +50,10 @@ class App extends Component {
     } */
   };
 
+  getLibrary = (provider) => {
+    return new Web3(provider);
+  };
+
   runExample = async () => {
     /* const { accounts, contract } = this.state;
 
@@ -68,25 +72,28 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     } */
     return (
-      <div className='App'>
-        <Navbar />
-        <div className='flex flex-row w-full'>
-          <CreateContract className='flex w-1/2' />
-          <TransactionDashboard className='flex w-1/2' />
-        </div>
+      <Web3ReactProvider getLibrary={this.getLibrary}>
+        <div className='App'>
+          <Navbar />
+          <WalletConnector />
+          <div className='flex flex-row w-full'>
+            <CreateContract className='flex w-1/2' />
+            <TransactionDashboard className='flex w-1/2' />
+          </div>
 
-        <div className='bg-gray-500'>
-          <h1 className='flex w-full justify-center pt-10 mb-5     text-black text-xl font-mono font-bold'>
-            Manage your existing contracts
-          </h1>
-          <p className='flex w-full text-left text-black'>
-            The following section shall provide you a dashboard for your given
-            Letters of Credit
-          </p>
-          <SmartContractManagementComponent className='flex flex-row justify-center w-full' />
+          <div className='bg-gray-500'>
+            <h1 className='flex w-full justify-center pt-10 mb-5     text-black text-xl font-mono font-bold'>
+              Manage your existing contracts
+            </h1>
+            <p className='flex w-full text-left text-black'>
+              The following section shall provide you a dashboard for your given
+              Letters of Credit
+            </p>
+            <SmartContractManagementComponent className='flex flex-row justify-center w-full' />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </Web3ReactProvider>
     );
   }
 }
