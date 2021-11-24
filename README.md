@@ -11,7 +11,7 @@ In this project React, Solidity and Truffle have been used to enable a decentral
 ### React
 
 Metamask
-serves as the connector between Frontend and Backend. It is the interface between our components.
+serves as the connector between Frontend and Backend. It is a Remote Client that includes a Wallet to enable account management of the accounts provided by the local test network (Truffle/Ganache).
 
 web3 
 is a library serving to facilitate interactions with Smart Contracts
