@@ -1,4 +1,4 @@
-# woly
+# Thesis
 
 ## Starting the project
 
